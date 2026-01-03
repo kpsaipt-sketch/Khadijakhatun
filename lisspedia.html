@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LISspedia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:#dcdcdc; /* grey background */
+}
+
+/* ---------- HEADER ---------- */
+header {
+    text-align:center;
+    background-color:#2c3e50;
+    color:white;
+    padding:30px 10px;
+}
+header h1 {
+    margin:0;
+    font-size:60px;
+    background: linear-gradient(270deg, #f9ca24, #ff7675, #74b9ff, #55efc4);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 6s ease infinite, zoomFade 1.5s ease;
+}
+header p {
+    margin:10px 0 0;
+    font-size:28px;
+    letter-spacing:1px;
+    background: linear-gradient(270deg, #a29bfe, #fd79a8, #00cec9, #ffeaa7);
+    background-size:500% 500%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 8s ease infinite, fadeUp 2s ease;
+}
+
+/* ---------- NAV ---------- */
+nav {
+    background-color:#34495e;
+    text-align:center;
+    padding:10px 0;
+}
+nav a {
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+nav a:hover { text-decoration:underline; }
+
+/* ---------- SECTIONS ---------- */
+section {
+    padding:40px 20px;
+    margin:10px;
+    border-radius:10px;
+    display:none; /* hidden by default */
+    color:#fff;
+}
+section h2 { 
+    text-align:center; 
+    font-size:32px; 
+    margin-bottom:20px; 
+    animation:slideLeft 1.2s ease; 
+}
+section p, ul { max-width:900px; margin:0 auto 15px auto; font-size:18px; line-height:1.7; text-align:justify; }
+ul { list-style-type:disc; padding-left:40px; }
+
+/* ---------- SUGGESTION BOX ---------- */
+.suggestion-box {
+    flex:1 1 200px; /* smaller width */
+    min-width:200px;
+    max-width:250px;
+    padding:15px;
+    border-radius:15px;
+    background: linear-gradient(135deg, #f6d365, #fda085); /* warm gradient */
+    color:#2d3436;
+    animation: floatBox 5s ease-in-out infinite alternate;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.suggestion-box h2 { color:#2d3436; text-align:center; margin-bottom:10px; font-size:20px; }
+.suggestion-box p { color:#2d3436; font-size:14px; text-align:center; margin-bottom:10px; }
+
+form input, form textarea {
+    width:100%;
+    padding:8px 8px;
+    margin-bottom:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+form textarea { height:60px; } /* smaller textarea */
+form button {
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(90deg,#6c5ce7,#a29bfe);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+form button:hover {
+    background:linear-gradient(90deg,#341f97,#6c5ce7);
+    transform: translateY(-2px);
+}
+
+/* ---------- FOOTER ---------- */
+footer { text-align:center; background-color:#ff7675; color:white; padding:20px; margin-top:30px; }
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes zoomFade { 0%{opacity:0; transform:scale(0.7);} 100%{opacity:1; transform:scale(1);} }
+@keyframes fadeUp { 0%{opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
+@keyframes slideLeft { 0%{opacity:0; transform:translateX(-40px);} 100%{opacity:1; transform:translateX(0);} }
+@keyframes gradientMove { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+@keyframes floatBox {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>LISspedia</h1>
+    <p>Knowledge • Innovation • Excellence</p>
+</header>
+
+<nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('aboutme')">About Me</a>
+    <a onclick="showSection('website')">About Website</a>
+    <a onclick="showSection('works')">My Works</a>
+    <a onclick="showSection('contact')">Contact</a>
+</nav>
+
+<!-- HOME with right suggestion box -->
+<section id="home" style="background-color:#2c3e50; display:flex; flex-wrap:wrap; border-radius:10px; gap:20px;">
+  
+  <!-- LEFT: Home Paragraph -->
+  <div style="flex:2 1 300px; padding:20px; min-width:100px;">
+    <p>
+      LISspedia is a comprehensive academic knowledge platform dedicated to the field of Library and Information Science (LIS).
+      It supports students, researchers, and professionals engaged in LIS.The platform provides reliable resources, in-depth explanations of core concepts, and structured learning materials.<br>
+      LISspedia emphasizes information organization, retrieval systems, knowledge management, and digital libraries.
+      The website encourages research, exploration, and innovation, addressing modern LIS challenges.It bridges theoretical knowledge with practical applications, helping users develop skills essential for academic and professional success.
+    </p>
+  </div>
+
+  <!-- RIGHT: Small Suggestion Box -->
+  <div class="suggestion-box">
+    <h2>Suggestion Box</h2>
+    <p>We value your feedback! Please share your suggestions below:</p>
+    <form id="suggestionForm" method="post" action="save_suggestion.php">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="suggestionText" placeholder="Write your suggestion here..." required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</section>
+
+<!-- ABOUT ME -->
+<section id="aboutme" style="background-color:#6c5ce7;">
+    
+    <p>
+        My name is Khadija Khatun, a dedicated student of Library and Information Science at Jadavpur University.<br>
+        I have strong interests in knowledge organization, digital libraries, and information retrieval systems.<br>
+        Through my academic journey, I have gained experience in research, database management, and modern library practices.<br>
+        My goal is to contribute to the LIS community by creating platforms like LISspedia that bridge learning and practical application.
+    </p>
+</section>
+
+<!-- ABOUT WEBSITE -->
+<section id="website" style="background-color:#00cec9;">
+    
+    <p>
+        LISspedia is a one-stop platform for students, researchers, and professionals in LIS.<br>
+        The website provides curated learning materials, practical examples, and research tools.<br>
+        It emphasizes digital literacy, classification systems, information retrieval technologies, and library management practices.<br>
+        LISspedia encourages exploration, learning, and innovation in Library and Information Science.
+    </p>
+</section>
+
+<!-- MY WORKS -->
+<section id="works" style="background-color:#fd79a8;">
+    
+    <p>
+        I have completed projects and research in areas such as:<br>
+        - Bachelor of Library and Information Science projects<br>
+        - Master of Library and Information Science research<br>
+        - Information Retrieval System studies<br>
+        - Digital Libraries and metadata organization<br>
+        - Classification systems including DDC and Colon Classification
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background-color:#d63031;">
+   
+    <p>Email: info@lisspedia.com</p>
+    <p>Phone: +91 XXXXX XXXXX</p>
+</section>
+
+<footer>
+    <p>© 2026 LISspedia | Designed by Khadija Khatun</p>
+</footer>
+
+<script>
+function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.style.display='none');
+    const sec = document.getElementById(id);
+    sec.style.display = (id==='home') ? 'flex' : 'block';
+}
+// Show Home by default
+showSection('home');
+</script>
+
+</body>
+</html>
